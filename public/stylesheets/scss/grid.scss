@@ -1,0 +1,71 @@
+$grid: $grid_width- $page_padding + $border_size * 2;
+
+$golden_column: $grid / 1.618 !default;
+
+@mixin column_calc($col_size, $drop_shadow: false) {
+  width: $col_size - $page_padding * 2 + $border_size * 2 + em;
+  padding: $page_padding / 2 + em;
+  margin: $page_padding / 2 + em;
+  border: $border_size + em $border_style $border_color;
+  @include rounded;
+  @if $drop_shadow {
+    @include drop-shadow; }
+  @include clearfix;
+  * html & {
+    /:width= (!col_size)+(!border_size*2)+"em" {
+ } } }
+
+@mixin grid_list {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline; }
+
+#grid,
+.grid {
+  width: $grid + em;
+  padding: 0 $page_padding / 2 + em;
+  @include clearfix;
+  display: block;
+  * html & {
+    width: $grid + $page_padding * 2 + em; } }
+
+.one_third, .two_thirds, .main, .column_one, .rail, .column, .two_quarters, .three_quarters, .half_column, .two_thirds {
+  float: left;
+  margin: auto; }
+
+.page,
+.full_page {
+  @include column_calc($grid, $drop_shadow); }
+
+.thirds {
+  .two_thirds,
+  .main,
+  .column_one {
+    @include column_calc($grid / 3 * 2, $drop_shadow); }
+  .one_third,
+  .main,
+  .column_one,
+  .column {
+    @include column_calc($grid / 3, $drop_shadow); } }
+
+.golden {
+  .main,
+  .column_one {
+    @include column_calc($golden_column, $drop_shadow); }
+  .rail,
+  .column_two {
+    @include column_calc($grid- $golden_column, $drop_shadow); } }
+
+.quarters {
+  .column,
+  .rail {
+    @include column_calc($grid / 4, $drop_shadow); }
+  .main,
+  .three_quarters {
+    @include column_calc($grid / 4 * 3, $drop_shadow); }
+  .two_quarters {
+    @include column_calc($grid / 2, $drop_shadow); }
+  .half_column {
+    @include column_calc($grid / 8, $drop_shadow); } }

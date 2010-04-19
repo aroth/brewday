@@ -1,0 +1,35 @@
+/* Tenplate config values */
+
+$font_color: #333333 !default;
+
+$base_font: unquote("helvetica,arial,sans-serif") !default;
+
+$headline_font: $base_font !default;
+
+$font_size: 1.6 !default;
+
+$background_color: white !default;
+
+$page_color: #cccccc !default;
+
+$link_color: #336699 !default;
+
+$line_height: 1.8 !default;
+
+$width: 960 !default;
+
+$border_radius: 0.2 !default;
+
+$drop_shadow: false !default;
+
+/* Tenplate SASS Includes */
+
+@import "base.sass";
+@import "css3.sass";
+@import "forms.sass";
+@import "grid.sass";
+
+/* Project Specific SASS
+ * Include your project sass and overides here */
+
+@import "client.sass";

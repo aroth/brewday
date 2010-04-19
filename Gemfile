@@ -3,7 +3,7 @@ source 'http://gemcutter.org'
 
 
 gem "rails", "3.0.0.beta"
-
+gem "haml", "3.0.0.beta.3"
 ## Bundle edge rails:
 # gem "rails", :git => "git://github.com/rails/rails.git"
 

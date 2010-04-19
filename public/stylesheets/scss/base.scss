@@ -1,0 +1,236 @@
+$font_color: #333333 !default;
+
+$base_font: unquote("helvetica,arial,sans-serif") !default;
+
+$headline_font: $base_font !default;
+
+$font_size: 1.6 !default;
+
+$background_color: white !default;
+
+$page_color: white !default;
+
+$link_color: #336699 !default;
+
+$page_padding: $line_height !default;
+
+$border_color: $link_color !default;
+
+$border_size: 0 !default;
+
+$border_style: none !default;
+
+$border_radius: 0.2 !default;
+
+$grid_width: $width / 10 !default;
+
+//Rounding
+@mixin round_top {
+  -moz-border-radius-topleft: $border_radius + em;
+  -moz-border-radius-topright: $border_radius + em;
+  -khtml-border-top-right-radius: $border_radius + em;
+  -khtml-border-top-left-radius: $border_radius + em;
+  -webkit-border-top-right-radius: $border_radius + em;
+  -webkit-border-top-left-radius: $border_radius + em; }
+
+@mixin round_bottom {
+  -moz-border-radius-bottomleft: $border_radius + em;
+  -moz-border-radius-bottomright: $border_radius + em;
+  -khtml-border-bottom-right-radius: $border_radius + em;
+  -khtml-border-bottom-left-radius: $border_radius + em;
+  -webkit-border-bottom-right-radius: $border_radius + em;
+  -webkit-border-bottom-left-radius: $border_radius + em; }
+
+@mixin rounded {
+  -moz-border-radius: $border_radius + em;
+  -webkit-border-radius: $border_radius + em;
+  -khtml-border-radius: $border_radius + em; }
+
+// Global reset rules.
+// For more specific resets, use the reset mixins provided below
+@mixin global-reset {
+  html, body {
+    @include reset;
+    font-size: 16px; }
+  @include nested-reset; }
+
+// Reset all elements within some selector scope.To reset the selector itself,
+// mixin the appropriate reset mixin for that element type as well. This could be
+// useful if you want to style a part of your page in a dramatically different way.
+@mixin nested-reset {
+  div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
+  pre, a, abbr, acronym, address, code, del, dfn, em, img,
+  dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, thead, tr {
+    @include reset; }
+  blockquote, q {
+    @include reset-quotation; }
+  th, td, caption {
+    @include reset-table-cell; }
+  table {
+    @include reset-table; }
+  a img {
+    border: none; } }
+
+@mixin reset-box-model {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+@mixin reset {
+  @include reset-box-model;
+  font: {
+    weight: inherit;
+    style: inherit;
+    size: 100%;
+    family: inherit; };
+  vertical-align: baseline; }
+
+@mixin reset-quotation {
+  @include reset;
+  quotes: "" "";
+  &:before,
+  &:after {
+    content: ""; } }
+
+@mixin reset-table-cell {
+  @include reset;
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle; }
+
+@mixin reset-table {
+  @include reset;
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle; }
+
+@include global-reset;
+
+body {
+  font-size: 62.5%;
+  color: $font_color;
+  font-family: $base_font;
+  line-height: $line_height + em;
+  background-color: $background_color;
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-transform: capitalize;
+    font-weight: bold; }
+  h1 {
+    font-size: $font_size + 0.6 + em;
+    margin: $line_height / ($font_size + 0.6) + em 0; }
+  h2 {
+    font-size: $font_size + 0.3 + em;
+    margin: $line_height / ($font_size + 0.3) + em 0; }
+  h3 {
+    font-size: $font_size + 0.2 + em;
+    margin-bottom: -($line_height / ($font_size + 0.2)) + em; }
+  h4 {
+    font-size: $font_size + 0.1 + em;
+    margin-top: $line_height / ($font_size + 0.1) + em;
+    margin-bottom: -($line_height / ($font_size + 0.1)) + em; }
+  h5 {
+    font-size: $font_size + em;
+    margin-top: $line_height / $font_size + em; }
+  p,
+  td,
+  th {
+    font-size: $font_size + em;
+    margin: $line_height / $font_size + em 0;
+    p,
+    th,
+    td,
+    input,
+    label {
+      font-size: 1em;
+      margin: 0; } }
+  a {
+    color: $link_color;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline; } }
+  ul,
+  ol {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    li {
+      margin: $line_height / $font_size + em 0;
+      list-style: none;
+      font-size: $font_size + em;
+      list-style: circle outside;
+      ul,
+      ol,
+      p,
+      * {
+        font-size: 1em; } } }
+  blockquote {
+    margin: 0 $page_padding * 4 + em; }
+  pre.example {
+    border: 0.1em solid #990000;
+    background: #333333;
+    color: #eeeeee;
+    font-size: $font_size + em;
+    margin: $line_height / $font_size + em 0;
+    display: block;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    code {
+      margin: 0;
+      padding: 0;
+      display: inline-block; } }
+  #notices {
+    width: auto;
+    background-color: #ffe6d4;
+    font-size: $font_size + em;
+    padding: 0;
+    border-bottom: 1px solid #999999;
+    .flash-notice {
+      padding: 1em;
+      background-color: #90ee90;
+      color: #666666; }
+    .flash-error {
+      background-color: #b73b29;
+      color: #dddddd;
+      padding: 1em; } } }
+
+//CLEARFIX
+@mixin clearfix {
+  display: inline-block;
+  &:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html & {
+    height: 1px; } }
+
+.group {
+  display: inline-block;
+  &:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0; } }
+
+* html,
+* html body {
+  height: 100%;
+  overflow: auto; }
+
+* html #overlay,
+* html #modal {
+  position: absolute; }
+
+* html #overlay {
+  width: 100%;
+  height: 100%;
+  filter: alpha(opacity = 50); }

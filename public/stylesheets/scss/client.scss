@@ -1,0 +1,9 @@
+body {
+  #grid {
+    .main,
+    .rail,
+    .page,
+    .full_page,
+    .column {
+      background-color: $background_color;
+      @include rounded; } } }
